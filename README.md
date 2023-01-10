@@ -92,6 +92,25 @@
 
 8. 发现触摸屏不能用，还有一个触摸屏驱动安装问题。
 
+# 触摸屏驱动
+
+```shell
+git clone GitHub - onitake/gslx680-acpi: ACPI/x86 compatible driver for Silead GSLx680 touchscreens
+# https://github.com/onitake/gsl-firmware/tree/master/firmware  一些型号平板的固件。
+apt-get install gcc make
+cd gslx680-acpi
+make
+make install
+depmod -a
+
+cp silead_ts.fw /lib/firmware
+rmmod silead
+rmmod gslx680_ts_acpi
+modprobe gslx680_ts_acpi
+# 然后重启试下
+```
+
+
 
 # 参考网页
 
@@ -103,7 +122,7 @@
 
 4.https://greyishsong.ink/平板的折腾之旅：从Windows 10到Ubuntu/   这里提到触摸屏的驱动问题
 
-
+5.https://www.zhihu.com/question/38587635 触摸屏驱动
 
 ps:里面可能还有细节忘了。太难折腾了。
 
